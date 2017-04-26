@@ -70,19 +70,15 @@ def pkexec(command):
     if not isinstance(command, list):
         command = command.split(" ")
 
-    display = os.getenv("DISPLAY")
-    xauthority = os.getenv("XAUTHORITY")
-
-    subprocess.Popen(["pkexec", "env", "DISPLAY=%s" % display, "XAUTHORITY=%s" % xauthority] + command)
-    print(["pkexec", "env", "DISPLAY=%s" % display, "XAUTHORITY=%s" % xauthority] + command)
+    subprocess.call(["/usr/bin/pkexec"] + command)
 
 ### Run as root
 
-def run_with_admin_privs(command, message=None, icon=None, skip_pkexec=False):
+def run_with_admin_privs(command, message=None, icon=None, support_pkexec=False):
     if not isinstance(command, list):
         command = command.split(" ")
 
-    if is_polkit_running() and not skip_pkexec:
+    if is_polkit_running() and support_pkexec:
         pkexec(command)
         return True
     elif os.path.exists("/usr/bin/gksu"):
