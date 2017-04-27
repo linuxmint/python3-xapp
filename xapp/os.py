@@ -61,6 +61,8 @@ def is_polkit_running():
     # Check that the polkit agent is running
     if is_desktop_kde() and is_process_running("polkit-kde-authentication-agent-1"):
         return True
+    if is_desktop_mate() and is_process_running("polkit-mate-authentication-agent-1"):
+    	return True
     elif is_process_running("polkit-gnome-authentication-agent-1"):
         return True
     else:
