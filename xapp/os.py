@@ -99,5 +99,10 @@ def run_with_admin_privs(command, message=None, icon=None, support_pkexec=False)
         commands = commands + command
         subprocess.Popen(commands)
         return True
+    # Finally use pkexec if we have nothing else - it will work, but the executed program
+    # may not be properly localized.
+    elif is_polkit_running():
+        pkexec(command)
+        return True
     else:
         return False
