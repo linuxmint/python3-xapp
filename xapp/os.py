@@ -41,6 +41,23 @@ def is_desktop_kde():
 def is_desktop_gnome():
     return get_current_desktop() == SESSION_GNOME
 
+def is_live_session():
+    is_live_session = False
+    if os.path.exists("/proc/cmdline"):
+        cmdline = subprocess.check_output("cat /proc/cmdline", shell = True).decode("utf-8")
+        for keyword in ["boot=casper", "boot=live"]:
+            if keyword in cmdline:
+                is_live_session = True
+                break
+    return is_live_session
+
+def is_guest_session():
+    home_path = os.path.expanduser("~")
+    if "/tmp/guest" in home_path:
+        return True
+    else:
+        return False
+
 ### PROCESS DETECTION
 
 def is_process_running(process_name):
