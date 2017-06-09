@@ -1,3 +1,22 @@
+python-xapp (1.0.1) sonya; urgency=medium
+
+  [ Clement Lefebvre ]
+  * OS: Turn pkexec support into an opt-in and don't set DISPLAY/XAUTHORITY
+
+  [ Sam Burgos ]
+  * added mate-polkit agent support
+
+  [ Michael Webster ]
+  * run_with_admin_privs: use pkexec as a last ditch chance, rather (#3)
+
+  [ David Mohammed ]
+  * support policykit processname under ubuntu 17.04 (#4)
+
+  [ Clement Lefebvre ]
+  * OS: Add is_guest_session() and is_live_session()
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 09 Jun 2017 15:43:22 +0100
+
 python-xapp (1.0.0) sonya; urgency=medium
 
   * Initial version
