@@ -8,7 +8,7 @@ setup( name = "python-xapp",
        maintainer = "Linux Mint",
        maintainer_email = "root@linuxmint.com",
        url = "http://github.com/linuxmint/python-xapp",
-       packages = ['xapp'],
+       packages = ['xapp', 'xapp.pkgCache'],
        classifiers = [
                 "License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)",
                 "Programming Language :: Python :: 2.6",
