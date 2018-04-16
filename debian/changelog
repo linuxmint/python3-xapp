@@ -1,3 +1,10 @@
+python-xapp (1.2.0) tara; urgency=medium
+
+  [ Björn Esser ]
+  * Properly bump version in setup.py (#5)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 16 Apr 2018 15:40:51 +0100
+
 python-xapp (1.0.1) sonya; urgency=medium
 
   [ Clement Lefebvre ]

@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup( name = "python-xapp",
-       version = "1.0.1",
+       version = "1.2.0",
        description = "Python Xapp Library.",
        maintainer = "Linux Mint",
        maintainer_email = "root@linuxmint.com",
