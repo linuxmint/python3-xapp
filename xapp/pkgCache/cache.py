@@ -223,18 +223,19 @@ class PkgCache(object):
         else:
             self.status = self.STATUS_OK
 
-    def _generate_cache_thread(self, callback=None, *args, **kwargs):
+    def _generate_cache_thread(self, callback=None):
         self._new_cache_common()
 
         if callback != None:
-            GObject.idle_add(callback, *args, **kwargs)
+            GObject.idle_add(callback)
 
     def get_subset_of_type(self, pkg_type):
         with self._item_lock:
             return { k: v for k, v in self._items.items() if k.startswith(pkg_type) }
 
     def force_new_cache_async(self, idle_callback=None):
-        thread = threading.Thread(target=self._generate_cache_thread, kwargs={ "callback" : idle_callback })
+        thread = threading.Thread(target=self._generate_cache_thread,
+                                  kwargs={ "callback" : idle_callback })
         thread.start()
 
     def force_new_cache(self):

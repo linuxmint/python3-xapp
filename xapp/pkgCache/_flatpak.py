@@ -169,6 +169,10 @@ def _load_appstream_pool(pools, remote):
     pools[remote.get_name()] = pool
 
 def initialize_appstream():
+    thread = threading.Thread(target=_initialize_appstream_thread)
+    thread.start()
+
+def _initialize_appstream_thread():
     fp_sys = get_fp_sys()
 
     global _as_pools
@@ -182,8 +186,6 @@ def initialize_appstream():
                 _load_appstream_pool(_as_pools, remote)
         except GLib.Error:
             print("Could not initialize appstream components for flatpaks")
-
-    return False
 
 def search_for_pkginfo_as_component(pkginfo):
     name = pkginfo.name

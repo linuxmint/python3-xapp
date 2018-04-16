@@ -22,7 +22,14 @@ INSTALL_TASK = "install"
 UNINSTALL_TASK = "remove"
 UPDATE_TASK = "update"
 
-# the current progress of the task (for flatpak only)
+def print_timing(func):
+    def wrapper(*arg):
+        t1 = time.time()
+        res = func(*arg)
+        t2 = time.time()
+        print('%s took %0.3f ms' % (func.__name__, (t2 - t1) * 1000.0))
+        return res
+    return wrapper
 
 class InstallerTask:
     # Set after a package selection, reflects whether task can proceed or not
@@ -126,6 +133,22 @@ class Installer:
 
         self.startup_timer = time.time()
 
+    def init_sync(self):
+        """
+        Loads the cache asynchronously.  If there is no cache (or it's too old,) it causes
+        one to be generated and saved.  The ready_callback is called on idle once this is finished.
+        """
+        self.cache = cache.PkgCache()
+
+        if self.cache.status == self.cache.STATUS_OK:
+            self.inited = True
+
+            GObject.idle_add(self.initialize_appstream)
+
+            return True
+        else:
+            return False
+
     def init(self, ready_callback=None):
         """
         Loads the cache asynchronously.  If there is no cache (or it's too old,) it causes
@@ -149,7 +172,7 @@ class Installer:
 
         GObject.idle_add(self.initialize_appstream)
 
-        print('installer startup full took %0.3f s' % ((time.time() - self.startup_timer) * 1000.0))
+        print('installer startup full took %0.3f ms' % ((time.time() - self.startup_timer) * 1000.0))
 
         if self._init_cb:
             self._init_cb()
@@ -236,6 +259,7 @@ class Installer:
         else:
             return False
 
+    @print_timing
     def initialize_appstream(self):
         """
         Loads and caches the AppStream pools so they can be used to provide
