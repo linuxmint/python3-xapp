@@ -1,3 +1,9 @@
+python-xapp (1.6.0) tessa; urgency=medium
+
+  * Add GSettingsWidgets and SettingsWidgets (#7)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 17 May 2019 16:00:54 +0100
+
 python-xapp (1.4.0) tessa; urgency=medium
 
   * 1.4.0
