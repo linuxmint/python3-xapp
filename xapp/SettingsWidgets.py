@@ -124,8 +124,8 @@ class SettingsPage(Gtk.Box):
         Gtk.Box.__init__(self)
         self.set_orientation(Gtk.Orientation.VERTICAL)
         self.set_spacing(30)
-        self.set_margin_left(80)
-        self.set_margin_right(80)
+        self.set_margin_start(80)
+        self.set_margin_end(80)
         self.set_margin_top(15)
         self.set_margin_bottom(15)
 
@@ -235,8 +235,8 @@ class SettingsWidget(Gtk.Box):
         self.set_orientation(Gtk.Orientation.HORIZONTAL)
         self.set_spacing(20)
         self.set_border_width(5)
-        self.set_margin_left(20)
-        self.set_margin_right(20)
+        self.set_margin_start(20)
+        self.set_margin_end(20)
 
         if dep_key:
             self.set_dep_key(dep_key)
@@ -256,8 +256,8 @@ class SettingsWidget(Gtk.Box):
 
     def fill_row(self):
         self.set_border_width(0)
-        self.set_margin_left(0)
-        self.set_margin_right(0)
+        self.set_margin_start(0)
+        self.set_margin_end(0)
 
     def get_settings(self, schema):
         global settings_objects
@@ -446,8 +446,8 @@ class Range(SettingsWidget):
         self.min_label.set_yalign(0.75)
         self.max_label.set_xalign(1.0)
         self.max_label.set_yalign(0.75)
-        self.min_label.set_margin_right(6)
-        self.max_label.set_margin_left(6)
+        self.min_label.set_margin_end(6)
+        self.max_label.set_margin_start(6)
         self.min_label.set_markup("<i><small>%s</small></i>" % min_label)
         self.max_label.set_markup("<i><small>%s</small></i>" % max_label)
 
