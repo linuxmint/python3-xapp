@@ -25,7 +25,7 @@ class EditableEntry (Gtk.Stack):
         self.entry = Gtk.Entry()
         self.button = Gtk.Button()
 
-        self.button.set_alignment(1.0, 0.5)
+        self.button.get_label().set_xalign(1.0)
         self.button.set_relief(Gtk.ReliefStyle.NONE)
         self.add_named(self.button, "button");
         self.add_named(self.entry, "entry");
@@ -158,14 +158,14 @@ class SettingsSection(Gtk.Box):
             if title:
                 label = Gtk.Label()
                 label.set_markup("<b>%s</b>" % title)
-                label.set_alignment(0, 0.5)
+                label.set_xalign(0.0)
                 header_box.add(label)
 
             if subtitle:
                 sub = Gtk.Label()
                 sub.set_text(subtitle)
                 sub.get_style_context().add_class("dim-label")
-                sub.set_alignment(0, 0.5)
+                sub.set_xalign(0.0)
                 header_box.add(sub)
 
         self.frame = Gtk.Frame()
@@ -223,7 +223,7 @@ class SettingsSection(Gtk.Box):
 
     def add_note(self, text):
         label = Gtk.Label()
-        label.set_alignment(0, 0.5)
+        label.set_xalign(0.0)
         label.set_markup(text)
         label.set_line_wrap(True)
         self.add(label)
@@ -442,8 +442,10 @@ class Range(SettingsWidget):
 
         self.min_label= Gtk.Label()
         self.max_label = Gtk.Label()
-        self.min_label.set_alignment(1.0, 0.75)
-        self.max_label.set_alignment(1.0, 0.75)
+        self.min_label.set_xalign(1.0)
+        self.min_label.set_yalign(0.75)
+        self.max_label.set_xalign(1.0)
+        self.max_label.set_yalign(0.75)
         self.min_label.set_margin_right(6)
         self.max_label.set_margin_left(6)
         self.min_label.set_markup("<i><small>%s</small></i>" % min_label)
