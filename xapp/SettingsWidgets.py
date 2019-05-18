@@ -170,8 +170,7 @@ class SettingsSection(Gtk.Box):
 
         self.frame = Gtk.Frame()
         self.frame.set_shadow_type(Gtk.ShadowType.IN)
-        frame_style = self.frame.get_style_context()
-        frame_style.add_class("view")
+
         self.size_group = Gtk.SizeGroup()
         self.size_group.set_mode(Gtk.SizeGroupMode.VERTICAL)
 
