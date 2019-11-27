@@ -661,7 +661,7 @@ class IconChooser(SettingsWidget):
     bind_prop = "icon"
     bind_dir = Gio.SettingsBindFlags.DEFAULT
 
-    def __init__(self, label, default_icon=None, custom=[], expand_width=False, size_group=None, dep_key=None, tooltip=""):
+    def __init__(self, label, default_icon=None, icon_categories=[], default_category=None, expand_width=False, size_group=None, dep_key=None, tooltip=""):
         super(IconChooser, self).__init__(dep_key=dep_key)
 
         self.label = SettingsLabel(label)
@@ -673,8 +673,11 @@ class IconChooser(SettingsWidget):
         if default_icon:
             dialog.set_default_icon(default_icon)
 
-        for item in custom:
-            dialog.add_custom_category(item['name'], item['icons'])
+        for category in icon_categories:
+            dialog.add_custom_category(category['name'], category['icons'])
+
+        if default_category is not None:
+            self.content_widget.set_default_category(default_category)
 
         self.pack_start(self.label, False, False, 0)
         self.pack_end(self.content_widget, expand_width, expand_width, 0)
