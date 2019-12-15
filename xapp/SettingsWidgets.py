@@ -150,6 +150,9 @@ class SettingsSection(Gtk.Box):
         Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
         self.set_spacing(10)
 
+        self.always_show = False
+        self.revealers = []
+
         if title or subtitle:
             header_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
             header_box.set_spacing(5)
@@ -169,6 +172,7 @@ class SettingsSection(Gtk.Box):
                 header_box.add(sub)
 
         self.frame = Gtk.Frame()
+        self.frame.set_no_show_all(True)
         self.frame.set_shadow_type(Gtk.ShadowType.IN)
         frame_style = self.frame.get_style_context()
         frame_style.add_class("view")
@@ -177,6 +181,7 @@ class SettingsSection(Gtk.Box):
 
         self.box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.frame.add(self.box)
+        self.add(self.frame)
 
         self.need_separator = False
 
@@ -194,8 +199,7 @@ class SettingsSection(Gtk.Box):
         vbox.add(list_box)
         self.box.add(vbox)
 
-        if self.frame.get_parent() is None:
-            self.add(self.frame)
+        self.update_always_show_state()
 
         self.need_separator = True
 
@@ -219,6 +223,11 @@ class SettingsSection(Gtk.Box):
 
         self.need_separator = True
 
+        self.revealers.append(revealer)
+        if not self.always_show:
+            revealer.notify_id = revealer.connect('notify::child-revealed', self.check_reveal_state)
+            self.check_reveal_state()
+
         return revealer
 
     def add_note(self, text):
@@ -228,6 +237,26 @@ class SettingsSection(Gtk.Box):
         label.set_line_wrap(True)
         self.add(label)
         return label
+
+    def update_always_show_state(self):
+        if self.always_show:
+            return
+
+        self.frame.set_no_show_all(False)
+        self.frame.show_all()
+        self.always_show = True
+
+        for revealer in self.revealers:
+            revealer.disconnect(revealer.notify_id)
+
+    def check_reveal_state(self, *args):
+        for revealer in self.revealers:
+            if revealer.props.child_revealed:
+                self.box.show_all()
+                self.frame.show()
+                return
+
+        self.frame.hide()
 
 class SettingsWidget(Gtk.Box):
     def __init__(self, dep_key=None):
