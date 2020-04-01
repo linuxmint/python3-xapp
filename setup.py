@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from distutils.core import setup
+from setuptools import setup
 
 setup( name = "python-xapp",
        version = "1.8.1",
