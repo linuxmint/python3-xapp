@@ -1,3 +1,13 @@
+python-xapp (2.0.0) ulyana; urgency=medium
+
+  [ Stephen Collins ]
+  * Settings section: ensure that settings inside a revealer can be visible
+
+  [ Michael Webster ]
+  * Remove python2 support
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 09 Apr 2020 12:57:02 +0100
+
 python-xapp (1.8.1) tricia; urgency=medium
 
   [ Stephen Collins ]
