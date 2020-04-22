@@ -1,3 +1,9 @@
+python3-xapp (2.0.1) ulyana; urgency=medium
+
+  * Packaging: Rename source package
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed, 22 Apr 2020 12:34:42 +0100
+
 python-xapp (2.0.0) ulyana; urgency=medium
 
   [ Stephen Collins ]

@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup( name = "python-xapp",
-       version = "2.0.0",
+       version = "2.0.1",
        description = "Python Xapp Library",
        maintainer = "Linux Mint",
        maintainer_email = "root@linuxmint.com",
