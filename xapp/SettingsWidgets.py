@@ -566,10 +566,11 @@ class Range(SettingsWidget):
 class ComboBox(SettingsWidget):
     bind_dir = None
 
-    def __init__(self, label, options=[], valtype=None, size_group=None, dep_key=None, tooltip=""):
+    def __init__(self, label, options=[], valtype=None, separator=None, size_group=None, dep_key=None, tooltip=""):
         super(ComboBox, self).__init__(dep_key=dep_key)
 
         self.valtype = valtype
+        self.separator = separator
         self.option_map = {}
 
         self.label = SettingsLabel(label)
@@ -584,6 +585,9 @@ class ComboBox(SettingsWidget):
         self.content_widget.set_valign(Gtk.Align.CENTER)
 
         self.set_options(options)
+
+        if separator:
+            self.content_widget.set_row_separator_func(self.is_separator_row)
 
         self.set_tooltip_text(tooltip)
 
@@ -619,6 +623,12 @@ class ComboBox(SettingsWidget):
 
         self.content_widget.set_model(self.model)
         self.content_widget.set_id_column(0)
+
+    def is_separator_row(self, model, tree_iter):
+        if model[tree_iter][0] == self.separator:
+            return True
+        else:
+            return False
 
 class ColorChooser(SettingsWidget):
     bind_dir = None
