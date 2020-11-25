@@ -1,3 +1,10 @@
+python3-xapp (2.0.2) ulyssa; urgency=medium
+
+  [ Stephen Collins ]
+  * Allow adding separators to the combo box widget
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed, 25 Nov 2020 10:54:58 +0000
+
 python3-xapp (2.0.1) ulyana; urgency=medium
 
   * Packaging: Rename source package
