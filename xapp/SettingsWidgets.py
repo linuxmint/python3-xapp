@@ -527,7 +527,16 @@ class Range(SettingsWidget):
         self.content_widget.connect("scroll-event", self.on_scroll_event)
         self.content_widget.connect("value-changed", self.apply_later)
 
+        if (not log) and self.step % 1 == 0:
+            self.content_widget.connect("change-value", self.round_value_to_step)
+
         self.set_tooltip_text(tooltip)
+
+    def round_value_to_step(self, widget, scroll, value, data=None):
+        if value % self.step != 0:
+            widget.set_value(round(value / self.step) * self.step)
+            return True
+        return False
 
     def apply_later(self, *args):
         def apply(self):
