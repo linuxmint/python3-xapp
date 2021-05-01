@@ -1,0 +1,8 @@
+debian/files
+debian/.debhelper/
+debian/*.log
+debian/*.debhelper
+debian/*.substvars
+debian/python3-xapp/
+.pybuild/
+python_xapp.egg-info/
