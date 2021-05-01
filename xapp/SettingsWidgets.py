@@ -429,7 +429,7 @@ class FontButton(SettingsWidget):
     bind_prop = "font-name"
     bind_dir = Gio.SettingsBindFlags.DEFAULT
 
-    def __init__(self, label, size_group=None, dep_key=None, tooltip=""):
+    def __init__(self, label, level=(Gtk.FontChooserLevel.STYLE | Gtk.FontChooserLevel.SIZE), size_group=None, dep_key=None, tooltip=""):
         super(FontButton, self).__init__(dep_key=dep_key)
 
         self.label = SettingsLabel(label)
@@ -444,6 +444,27 @@ class FontButton(SettingsWidget):
 
         if size_group:
             self.add_to_size_group(size_group)
+
+        if not (level & Gtk.FontChooserLevel.STYLE):
+            # the level mechanism is broken in gtk - choosing a level that doesn't include styles (italics, bold, etc)
+            # results in a list that only has one variant per family, but in many cases the selected font is bold or
+            # italicized (but not consistenly), which is not only confusing, but kind of defeats the purpose. To work
+            # around that, we supply our own filter function that removes the variants correctly. If it ever gets fixed
+            # in gtk, this parsing function can be removed and the level argument added directly to the font button.
+            def filter_func(fam, face):
+                face_text = face.get_face_name().lower()
+                for keyword in ['bold', 'italic', 'oblique']:
+                    if keyword in face_text:
+                        return False
+
+                return True
+
+            self.content_widget.set_filter_func(filter_func)
+
+            # add the style level to avoid the issues above - it's because we're already filtering them out manually
+            level |= Gtk.FontChooserLevel.STYLE
+
+        self.content_widget.set_level(level)
 
 class Range(SettingsWidget):
     bind_prop = "value"
