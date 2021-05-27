@@ -1,3 +1,14 @@
+python3-xapp (2.2.0) uma; urgency=medium
+
+  [ Michael Webster ]
+  * SettingsWidgets.py: Restrict Range increments to the 'step' amount.
+
+  [ Stephen Collins ]
+  * add .gitignore (#17)
+  * Font chooser widget: add option to specify the level of font selection. (#16)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 27 May 2021 09:48:55 +0100
+
 python3-xapp (2.0.2) ulyssa; urgency=medium
 
   [ Stephen Collins ]
