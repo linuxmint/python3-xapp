@@ -274,7 +274,7 @@ class SettingsWidget(Gtk.Box):
         flag = Gio.SettingsBindFlags.GET
         if dep_key[0] == "!":
             dep_key = dep_key[1:]
-            flag |= Gio.Settings.BindFlags.INVERT_BOOLEAN
+            flag |= Gio.SettingsBindFlags.INVERT_BOOLEAN
 
         split = dep_key.split("/")
         dep_settings = Gio.Settings.new(split[0])
