@@ -470,7 +470,7 @@ class Range(SettingsWidget):
     bind_prop = "value"
     bind_dir = Gio.SettingsBindFlags.GET | Gio.SettingsBindFlags.NO_SENSITIVITY
 
-    def __init__(self, label, min_label="", max_label="", mini=None, maxi=None, step=None, invert=False, log=False, show_value=True, dep_key=None, tooltip="", flipped=False, units=""):
+    def __init__(self, label, min_label="", max_label="", mini=None, maxi=None, step=None, invert=False, log=False, show_value=True, dep_key=None, tooltip="", flipped=False, units="", digits=1):
         super(Range, self).__init__(dep_key=dep_key)
 
         self.set_orientation(Gtk.Orientation.VERTICAL)
@@ -481,11 +481,10 @@ class Range(SettingsWidget):
         self.flipped = flipped
         self.timer = None
         self.value = 0
+        self.digits = digits
+        self.units = units
 
         hbox = Gtk.Box()
-
-        if units:
-            label += " ({})".format(units)
 
         self.label = Gtk.Label.new(label)
         self.label.set_halign(Gtk.Align.CENTER)
@@ -534,6 +533,12 @@ class Range(SettingsWidget):
         self.content_widget.set_inverted(invert)
         self.content_widget.set_draw_value(show_value and not self.flipped)
         self.bind_object = self.content_widget.get_adjustment()
+
+        if self.units != "":
+            def format_value(scale, value, data=None):
+                return "{0:0.{prec}f}{1}".format(value, self.units, prec=self.digits)
+
+            self.content_widget.connect("format-value", format_value)
 
         if invert:
             self.step *= -1 # Gtk.Scale.new_with_range want a positive value, but our custom scroll handler wants a negative value
@@ -590,6 +595,7 @@ class Range(SettingsWidget):
 
     def set_rounding(self, digits):
         if not self.log:
+            self.digits = digits
             self.content_widget.set_round_digits(digits)
             self.content_widget.set_digits(digits)
 
