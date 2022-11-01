@@ -2,10 +2,11 @@ Source: python3-xapp
 Section: python
 Priority: optional
 Maintainer: Linux Mint <root@linuxmint.com>
-Build-Depends: debhelper (>= 9),
-               dh-python,
-               python3-setuptools,
-               python3-all
+Build-Depends: 
+ debhelper-compat (= 12),
+ meson (>= 0.47.0),
+ dh-python,
+ python3-all
 Standards-Version: 3.9.5
 X-Python-Version: >= 2.6
 X-Python3-Version: >= 3.0
