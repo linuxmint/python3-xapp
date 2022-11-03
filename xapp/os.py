@@ -43,7 +43,7 @@ def is_desktop_gnome():
 
 def is_live_session():
     is_live_session = False
-    if os.path.exists("/proc/cmdline"):
+    if os.access("/proc/cmdline", os.R_OK):
         cmdline = subprocess.check_output("cat /proc/cmdline", shell = True).decode("utf-8")
         for keyword in ["boot=casper", "boot=live"]:
             if keyword in cmdline:
