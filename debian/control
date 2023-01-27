@@ -6,6 +6,7 @@ Build-Depends:
  debhelper-compat (= 12),
  meson (>= 0.47.0),
  dh-python,
+ gobject-introspection,
  python3-all
 Standards-Version: 3.9.5
 X-Python-Version: >= 2.6
