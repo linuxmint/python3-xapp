@@ -1,3 +1,13 @@
+python3-xapp (2.4.1) victoria; urgency=medium
+
+  [ Himadri Sekhar Basu ]
+  * fix lintian error and build failure (closes #21) (#22)
+
+  [ Michael Webster ]
+  * Add workflow
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 01 Jun 2023 11:21:49 +0100
+
 python3-xapp (2.4.0) vera; urgency=medium
 
   [ Michael Webster ]
