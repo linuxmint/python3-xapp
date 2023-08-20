@@ -127,22 +127,15 @@ def run_with_admin_privs(command, message=None, icon=None, support_pkexec=False)
     else:
         return False
 
-def get_os_release_info():
+def get_os_release_codename():
     try:
-        with open("/etc/os-release", encoding="utf-8") as f:
+        os_release = {}
+        with open("/etc/os-release") as f:
             reader = csv.reader(f, delimiter="=")
-            return dict(reader)
-    except Exception as e:
-        print("Unable to retrieve /etc/os-release: %s" % str(e))
+            os_release = dict(reader)
 
-    return {
-        "NAME"            : "unknown",
-        "VERSION"         : "unknown",
-        "ID"              : "unknown",
-        "ID_LIKE"         : "unknown",
-        "PRETTY_NAME"     : "unknown",
-        "VERSION_ID"      : "unknown",
-        "VERSION_CODENAME": "unknown",
-        "UBUNTU_CODENAME" : "unknown",
-        "DEBIAN_CODENAME" : "unknown"
-    }
+        return os_release["VERSION_CODENAME"]
+    except Exception as e:
+        print("Unable to retrieve codename from /etc/os-release: %s" % str(e))
+
+    return None
