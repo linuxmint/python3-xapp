@@ -3,7 +3,6 @@ from __future__ import absolute_import
 import os
 import psutil
 import subprocess
-import csv
 
 ### SESSION DETECTION
 
@@ -126,16 +125,3 @@ def run_with_admin_privs(command, message=None, icon=None, support_pkexec=False)
         return True
     else:
         return False
-
-def get_os_release_codename():
-    try:
-        os_release = {}
-        with open("/etc/os-release") as f:
-            reader = csv.reader(f, delimiter="=")
-            os_release = dict(reader)
-
-        return os_release["VERSION_CODENAME"]
-    except Exception as e:
-        print("Unable to retrieve codename from /etc/os-release: %s" % str(e))
-
-    return None
