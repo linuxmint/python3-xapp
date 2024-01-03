@@ -1,0 +1,1 @@
+option('python_target', type: 'string', value: 'python3', description: 'Python installation to target')
