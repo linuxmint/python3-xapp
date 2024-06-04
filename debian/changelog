@@ -1,3 +1,18 @@
+python3-xapp (2.4.2) wilma; urgency=medium
+
+  [ Michael Webster ]
+  * os.py: Add function to read the VERSION_CODENAME in /etc/os-release.
+  * os.py: rename get_os_release_codename() to get_os_release_info() and have it return a dictionary of os-release file's contents.
+
+  [ Clement Lefebvre ]
+  * Revert "os.py: rename get_os_release_codename() to get_os_release_info()"
+  * Revert "os.py: Add function to read the VERSION_CODENAME in /etc/os-release."
+
+  [ Matt Turnbull ]
+  * Make python installation configurable for distro packaging. (#23)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue, 04 Jun 2024 14:38:38 +0100
+
 python3-xapp (2.4.1) victoria; urgency=medium
 
   [ Himadri Sekhar Basu ]
