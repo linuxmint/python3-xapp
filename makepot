@@ -1,0 +1,2 @@
+#!/bin/bash
+xgettext --language=Python -cTRANSLATORS --keyword=_ --keyword=N_ --output=python-xapp.pot xapp/*.py xapp/*/*.py
