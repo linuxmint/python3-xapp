@@ -1,3 +1,9 @@
+python3-xapp (3.0.0) zena; urgency=medium
+
+  * Add new submodules
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed, 12 Nov 2025 14:39:38 +0000
+
 python3-xapp (2.4.2) wilma; urgency=medium
 
   [ Michael Webster ]
