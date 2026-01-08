@@ -1,4 +1,4 @@
-project('python-xapp', version : '3.0.1', meson_version : '>=0.47.0')
+project('python-xapp', version : '3.0.2', meson_version : '>=0.47.0')
 
 pymod = import('python')
 python3 = pymod.find_installation(get_option('python_target'))
