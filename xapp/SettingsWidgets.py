@@ -86,6 +86,30 @@ class SettingsStack(Gtk.Stack):
         self.set_transition_duration(150)
         self.expand = True
 
+class SettingsCondition():
+    def __init__(self, row, schema=None, key=None, values=None, check_func=None):
+
+        self.row = row
+        self.check_func = check_func
+
+        if schema:
+            self.settings = Gio.Settings.new(schema)
+            # if there aren't values or a function provided to determine visibility we can do a simple bind
+            if values is None and check_func is None:
+                self.settings.bind(key, self.row, "sensitive", Gio.SettingsBindFlags.GET)
+            else:
+                self.values = values
+                self.settings.connect("changed::" + key, self.on_settings_changed)
+                self.on_settings_changed(self.settings, key)
+
+    #only used when checking values
+    def on_settings_changed(self, settings, key):
+        value = settings.get_value(key).unpack()
+        if self.check_func is None:
+            self.row.set_sensitive(value in self.values)
+        else:
+            self.row.set_sensitive(self.check_func(value, self.values))
+
 class SettingsRevealer(Gtk.Revealer):
     def __init__(self, schema=None, key=None, values=None, check_func=None):
         Gtk.Revealer.__init__(self)
@@ -135,6 +159,12 @@ class SettingsPage(Gtk.Box):
 
         return section
 
+    def add_rounded_section(self, title=None, subtitle=None):
+        section = RoundedSettingsSection(title, subtitle)
+        self.pack_start(section, False, False, 0)
+
+        return section
+
     def add_reveal_section(self, title, schema=None, key=None, values=None, revealer=None):
         section = SettingsSection(title)
         if revealer is None:
@@ -144,6 +174,104 @@ class SettingsPage(Gtk.Box):
         self.pack_start(revealer, False, False, 0)
 
         return section
+
+class RoundedSettingsSection(Gtk.Box):
+    def __init__(self, title=None, subtitle=None):
+        Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
+        self.set_spacing(10)
+
+        css = '''
+        .xapp-settings-row {
+        }
+        .xapp-settings-row-top {
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+        .xapp-settings-row-middle {
+            border-bottom: 1px solid rgba(0,0,0,.1);
+        }
+        .xapp-settings-row-bottom {
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+        .xapp-settings-list {
+            border-radius: 6px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        '''
+        self.css_provider = Gtk.CssProvider()
+        self.css_provider.load_from_data(css.encode('UTF-8'))
+
+        if title or subtitle:
+            header_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+            header_box.set_spacing(5)
+            self.add(header_box)
+
+            if title:
+                label = Gtk.Label()
+                label.set_markup("<b>%s</b>" % title)
+                label.set_alignment(0, 0.5)
+                header_box.add(label)
+
+            if subtitle:
+                sub = Gtk.Label()
+                sub.set_text(subtitle)
+                sub.get_style_context().add_class("dim-label")
+                sub.set_alignment(0, 0.5)
+                header_box.add(sub)
+
+        self.size_group = Gtk.SizeGroup()
+        self.size_group.set_mode(Gtk.SizeGroupMode.VERTICAL)
+
+        self.box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.add(self.box)
+
+        self.list_box = Gtk.ListBox()
+        self.list_box.get_style_context().add_provider(self.css_provider, Gtk.STYLE_PROVIDER_PRIORITY_FALLBACK)
+        self.list_box.get_style_context().add_class("xapp-settings-list")
+        self.list_box.set_selection_mode(Gtk.SelectionMode.NONE)
+        self.list_box.connect("row-activated", self.on_row_activated)
+        self.box.add(self.list_box)
+
+        self.switches = {}
+        self.conditions = []
+        self.previous_row = None
+
+    def on_row_activated(self, box, row):
+        if row in self.switches:
+            widget = self.switches[row]
+            widget.clicked()
+
+    def add_row(self, widget):
+        row = Gtk.ListBoxRow(can_focus=False)
+        row.get_style_context().add_provider(self.css_provider, Gtk.STYLE_PROVIDER_PRIORITY_FALLBACK)
+        row.get_style_context().add_class("xapp-settings-row")
+        row.get_style_context().add_class("xapp-settings-row-bottom")
+        if self.previous_row is None:
+            row.get_style_context().add_class("xapp-settings-row-top")
+        else:
+            self.previous_row.get_style_context().add_class("xapp-settings-row-middle")
+            self.previous_row.get_style_context().remove_class("xapp-settings-row-bottom")
+        self.previous_row = row
+
+        row.add(widget)
+        if isinstance(widget, Switch):
+            self.switches[row] = widget
+        self.list_box.add(row)
+        return row
+
+    def add_conditional_row(self, widget, schema=None, key=None, values=None, check_func=None, revealer=None):
+        row = self.add_row(widget)
+        self.conditions.append(SettingsCondition(row, schema, key, values, check_func))
+
+    def add_note(self, text):
+        label = Gtk.Label()
+        label.set_alignment(0, 0.5)
+        label.set_markup(text)
+        label.set_line_wrap(True)
+        self.add(label)
+        return label
+
 
 class SettingsSection(Gtk.Box):
     def __init__(self, title=None, subtitle=None):
@@ -319,6 +447,8 @@ class Switch(SettingsWidget):
         self.label = SettingsLabel(label)
         self.pack_start(self.label, False, False, 0)
         self.pack_end(self.content_widget, False, False, 0)
+        hint_img = Gtk.Image.new_from_icon_name("info-symbolic", Gtk.IconSize.BUTTON)
+        self.pack_end(hint_img, False, False, 0)
 
         self.set_tooltip_text(tooltip)
 
