@@ -13,6 +13,7 @@ python3.install_sources(
     [
         'widgets/__init__.py',
         'widgets/ListEditor.py',
+        'widgets/MessageDialog.py',
     ],
     subdir: 'xapp/widgets'
 )
