@@ -125,3 +125,70 @@ def run_with_admin_privs(command, message=None, icon=None, support_pkexec=False)
         return True
     else:
         return False
+
+### NETWORK PROXY
+
+PROXY_SCHEMA = "org.gnome.system.proxy"
+
+def _build_proxy_url(parent_settings, scheme):
+    child = parent_settings.get_child(scheme)
+    host = child.get_string("host")
+
+    if not host:
+        return None
+
+    port = child.get_int("port")
+
+    user = ""
+    password = ""
+
+    if scheme == "http" and child.get_boolean("use-authentication"):
+        user = child.get_string("authentication-user")
+        password = child.get_string("authentication-password")
+
+    url = "" if "://" in host else "http://"
+
+    if user:
+        if password:
+            url += "%s:%s@" % (user, password)
+        else:
+            url += "%s@" % user
+
+    url += host
+
+    if port > 0:
+        url += ":%d" % port
+
+    return url
+
+def _maybe_set_env(name, value):
+    if value is None:
+        return
+    if os.environ.get(name) or os.environ.get(name.upper()):
+        return
+    os.environ[name] = value
+
+def add_network_proxy_to_env():
+    """Read system proxy config from GSettings and populate http_proxy,
+    https_proxy and no_proxy in os.environ so that requests, urllib, etc.
+    use the configured proxy.
+
+    Existing values are preserved - if http_proxy or HTTP_PROXY is already
+    set, it is not overwritten. Should be called early in startup, before
+    any networking happens."""
+    from gi.repository import Gio
+    source = Gio.SettingsSchemaSource.get_default()
+    if source is None or source.lookup(PROXY_SCHEMA, True) is None:
+        return
+
+    settings = Gio.Settings.new(PROXY_SCHEMA)
+    if settings.get_string("mode") != "manual":
+        return
+
+    _maybe_set_env("http_proxy", _build_proxy_url(settings, "http"))
+    _maybe_set_env("https_proxy", _build_proxy_url(settings, "https"))
+
+    if not os.environ.get("no_proxy") and not os.environ.get("NO_PROXY"):
+        ignore_hosts = settings.get_strv("ignore-hosts")
+        if ignore_hosts:
+            os.environ["no_proxy"] = ",".join(ignore_hosts)
