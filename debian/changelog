@@ -1,3 +1,14 @@
+python3-xapp (3.0.3) zena; urgency=medium
+
+  [ Michael Webster ]
+  * .github/workflows: Add generate-test-packages trigger.
+  * os.py: Add add_network_proxy_to_env() to replace proxygsettings.py use everywhere.
+
+  [ Clement Lefebvre ]
+  * Implement Dialog
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 18 May 2026 13:20:42 +0100
+
 python3-xapp (3.0.2) zena; urgency=medium
 
   * l10n: Update translations
