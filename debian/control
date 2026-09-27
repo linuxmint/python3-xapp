@@ -9,8 +9,6 @@ Build-Depends:
  gettext,
  python3-all
 Standards-Version: 3.9.5
-X-Python-Version: >= 2.6
-X-Python3-Version: >= 3.0
 
 Package: python3-xapp
 Architecture: all
