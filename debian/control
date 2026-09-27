@@ -3,7 +3,7 @@ Section: python
 Priority: optional
 Maintainer: Linux Mint <root@linuxmint.com>
 Build-Depends: 
- debhelper-compat (= 12),
+ debhelper-compat (= 13),
  meson (>= 0.47.0),
  dh-sequence-python3,
  gettext,
