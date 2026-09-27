@@ -14,6 +14,14 @@ X-Python3-Version: >= 3.0
 
 Package: python3-xapp
 Architecture: all
-Depends: ${misc:Depends}, ${python3:Depends}, python3-psutil
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ gir1.2-glib-2.0,
+ gir1.2-gtk-3.0,
+ gir1.2-pango-1.0,
+ gir1.2-xapp-1.0,
+ python3-gi,
+ python3-psutil
 Description: Python 3 XApp library
  This package contains the Python 3 version of the library.
