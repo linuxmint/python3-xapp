@@ -9,6 +9,7 @@ Build-Depends:
  gettext,
  python3-all
 Standards-Version: 4.7.0
+Homepage: https://github.com/linuxmint/python3-xapp
 
 Package: python3-xapp
 Architecture: all
