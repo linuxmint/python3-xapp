@@ -1,3 +1,13 @@
+python3-xapp (3.0.4) adrien; urgency=medium
+
+  [ Fabio Fantoni ]
+  * debian: packaging improvements from the Debian package (#25)
+
+  [ Kevin Langman ]
+  * Fix a failure to reveal a key when all section keys have dependancies (#26)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 09 Nov 2026 10:00:57 +0000
+
 python3-xapp (3.0.3) zena; urgency=medium
 
   [ Michael Webster ]
