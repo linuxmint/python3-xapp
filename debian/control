@@ -3,17 +3,24 @@ Section: python
 Priority: optional
 Maintainer: Linux Mint <root@linuxmint.com>
 Build-Depends: 
- debhelper-compat (= 12),
+ debhelper-compat (= 13),
  meson (>= 0.47.0),
- dh-python,
- gobject-introspection,
+ dh-sequence-python3,
+ gettext,
  python3-all
-Standards-Version: 3.9.5
-X-Python-Version: >= 2.6
-X-Python3-Version: >= 3.0
+Standards-Version: 4.7.0
+Homepage: https://github.com/linuxmint/python3-xapp
 
 Package: python3-xapp
 Architecture: all
-Depends: ${misc:Depends}, ${python3:Depends}, python3-psutil
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ gir1.2-glib-2.0,
+ gir1.2-gtk-3.0,
+ gir1.2-pango-1.0,
+ gir1.2-xapp-1.0,
+ python3-gi,
+ python3-psutil
 Description: Python 3 XApp library
  This package contains the Python 3 version of the library.
