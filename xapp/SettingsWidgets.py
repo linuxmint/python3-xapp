@@ -251,7 +251,7 @@ class SettingsSection(Gtk.Box):
 
     def check_reveal_state(self, *args):
         for revealer in self.revealers:
-            if revealer.props.child_revealed:
+            if revealer.props.reveal_child or revealer.props.child_revealed:
                 self.box.show_all()
                 self.frame.show()
                 return
