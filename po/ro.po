@@ -1,0 +1,72 @@
+# Romanian translation for linuxmint
+# Copyright (c) 2026 Rosetta Contributors and Canonical Ltd 2026
+# This file is distributed under the same license as the linuxmint package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: linuxmint\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2025-11-11 13:45+0000\n"
+"PO-Revision-Date: 2026-01-18 12:07+0000\n"
+"Last-Translator: Danut Hintariu <Unknown>\n"
+"Language-Team: Romanian <ro@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2026-11-16 12:01+0000\n"
+"X-Generator: Launchpad (build 72ba15af7e009b17d4aa1467977127ac8392a4de)\n"
+
+#: xapp/widgets/ListEditor.py:161
+msgid "Move up"
+msgstr "Mută sus"
+
+#: xapp/widgets/ListEditor.py:167
+msgid "Move down"
+msgstr "Mută jos"
+
+#: xapp/widgets/ListEditor.py:231
+msgid "Cancel"
+msgstr "Anulează"
+
+#: xapp/widgets/ListEditor.py:234
+msgid "Save"
+msgstr "Salvează"
+
+#: xapp/widgets/ListEditor.py:354
+msgid "Add"
+msgstr "Adaugă"
+
+#: xapp/widgets/ListEditor.py:362
+msgid "Remove"
+msgstr "Elimină"
+
+#: xapp/widgets/ListEditor.py:369
+msgid "Edit"
+msgstr "Editează"
+
+#: xapp/widgets/ListEditor.py:377
+msgid "Remove all"
+msgstr "Elimină toate"
+
+#: xapp/widgets/ListEditor.py:486
+#, python-format
+msgid "'%s' is already in the list."
+msgstr "'%s' este deja pe listă."
+
+#: xapp/widgets/ListEditor.py:571
+msgid "Remove?"
+msgstr "Elimini?"
+
+#: xapp/widgets/ListEditor.py:573
+#, python-format
+msgid "Are you sure you want to remove '%s'?"
+msgstr "Sigur dorești să elimini '%s'?"
+
+#: xapp/widgets/ListEditor.py:626
+msgid "Remove all?"
+msgstr "Elimini toate?"
+
+#: xapp/widgets/ListEditor.py:628
+msgid "This will remove all items from the list."
+msgstr "Asta va elimina toate elementele din listă."

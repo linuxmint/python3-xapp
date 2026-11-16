@@ -1,0 +1,72 @@
+# Uzbek translation for linuxmint
+# Copyright (c) 2026 Rosetta Contributors and Canonical Ltd 2026
+# This file is distributed under the same license as the linuxmint package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: linuxmint\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2025-11-11 13:45+0000\n"
+"PO-Revision-Date: 2026-04-27 12:30+0000\n"
+"Last-Translator: Umidjon Almasov <umutelmas.uz@gmail.com>\n"
+"Language-Team: Uzbek <uz@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2026-11-16 12:01+0000\n"
+"X-Generator: Launchpad (build 72ba15af7e009b17d4aa1467977127ac8392a4de)\n"
+
+#: xapp/widgets/ListEditor.py:161
+msgid "Move up"
+msgstr "Yuqoriga siljitish"
+
+#: xapp/widgets/ListEditor.py:167
+msgid "Move down"
+msgstr "Pastga siljitish"
+
+#: xapp/widgets/ListEditor.py:231
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+#: xapp/widgets/ListEditor.py:234
+msgid "Save"
+msgstr "Saqlash"
+
+#: xapp/widgets/ListEditor.py:354
+msgid "Add"
+msgstr "Qoʻshish"
+
+#: xapp/widgets/ListEditor.py:362
+msgid "Remove"
+msgstr "Oʻchirish"
+
+#: xapp/widgets/ListEditor.py:369
+msgid "Edit"
+msgstr "Tahrirlash"
+
+#: xapp/widgets/ListEditor.py:377
+msgid "Remove all"
+msgstr "Hammasini olib tashlash"
+
+#: xapp/widgets/ListEditor.py:486
+#, python-format
+msgid "'%s' is already in the list."
+msgstr "'%s' allaqachon roʻyxatda."
+
+#: xapp/widgets/ListEditor.py:571
+msgid "Remove?"
+msgstr "Olib tashlansinmi?"
+
+#: xapp/widgets/ListEditor.py:573
+#, python-format
+msgid "Are you sure you want to remove '%s'?"
+msgstr "'%s'ni olib tashlashga ishonchingiz komilmi?"
+
+#: xapp/widgets/ListEditor.py:626
+msgid "Remove all?"
+msgstr "Hammasi olib tashlansinmi?"
+
+#: xapp/widgets/ListEditor.py:628
+msgid "This will remove all items from the list."
+msgstr "Bu ro‘yxatdagi barcha elementlarni olib tashlaydi."

@@ -8,65 +8,65 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2025-11-11 13:45+0000\n"
-"PO-Revision-Date: 2025-11-21 18:02+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-05-23 14:38+0000\n"
+"Last-Translator: Alexandr Primak <primak.aa@gmail.com>\n"
 "Language-Team: Belarusian <be@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2026-01-08 15:45+0000\n"
-"X-Generator: Launchpad (build 99c00f518760bdd50fc6e353e7736d2fff8fba4a)\n"
+"X-Launchpad-Export-Date: 2026-11-16 12:01+0000\n"
+"X-Generator: Launchpad (build 72ba15af7e009b17d4aa1467977127ac8392a4de)\n"
 
 #: xapp/widgets/ListEditor.py:161
 msgid "Move up"
-msgstr ""
+msgstr "Перамясціць уверх"
 
 #: xapp/widgets/ListEditor.py:167
 msgid "Move down"
-msgstr ""
+msgstr "Перамясціць уніз"
 
 #: xapp/widgets/ListEditor.py:231
 msgid "Cancel"
-msgstr ""
+msgstr "Скасаваць"
 
 #: xapp/widgets/ListEditor.py:234
 msgid "Save"
-msgstr ""
+msgstr "Захаваць"
 
 #: xapp/widgets/ListEditor.py:354
 msgid "Add"
-msgstr ""
+msgstr "Дадаць"
 
 #: xapp/widgets/ListEditor.py:362
 msgid "Remove"
-msgstr ""
+msgstr "Выдаліць"
 
 #: xapp/widgets/ListEditor.py:369
 msgid "Edit"
-msgstr ""
+msgstr "Рэдагаваць"
 
 #: xapp/widgets/ListEditor.py:377
 msgid "Remove all"
-msgstr ""
+msgstr "Выдаліць усе"
 
 #: xapp/widgets/ListEditor.py:486
 #, python-format
 msgid "'%s' is already in the list."
-msgstr ""
+msgstr "'%s' ужо знаходзіцца ў спісе."
 
 #: xapp/widgets/ListEditor.py:571
 msgid "Remove?"
-msgstr ""
+msgstr "Выдаліць?"
 
 #: xapp/widgets/ListEditor.py:573
 #, python-format
 msgid "Are you sure you want to remove '%s'?"
-msgstr ""
+msgstr "Сапраўды жадаеце выдаліць '%s'?"
 
 #: xapp/widgets/ListEditor.py:626
 msgid "Remove all?"
-msgstr ""
+msgstr "Выдаліць усе?"
 
 #: xapp/widgets/ListEditor.py:628
 msgid "This will remove all items from the list."
-msgstr ""
+msgstr "Гэта выдаліць усе элементы са спісу."
