@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2025-11-11 13:45+0000\n"
-"PO-Revision-Date: 2025-11-11 15:35+0000\n"
+"PO-Revision-Date: 2026-11-18 20:23+0000\n"
 "Last-Translator: Pjotr12345 <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2026-11-16 12:01+0000\n"
-"X-Generator: Launchpad (build 72ba15af7e009b17d4aa1467977127ac8392a4de)\n"
+"X-Launchpad-Export-Date: 2026-11-24 12:02+0000\n"
+"X-Generator: Launchpad (build 012091084314157d19ae714f55ef4c582ff0feb5)\n"
 
 #: xapp/widgets/ListEditor.py:161
 msgid "Move up"
@@ -69,4 +69,4 @@ msgstr "Alles verwijderen?"
 
 #: xapp/widgets/ListEditor.py:628
 msgid "This will remove all items from the list."
-msgstr "Dit zal alle elementen in de lijst verwijderen."
+msgstr "Dit zal alle elementen uit de lijst verwijderen."
