@@ -1,3 +1,9 @@
+python3-xapp (3.0.6) adrien; urgency=medium
+
+  * l10n: Update translations
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue, 24 Nov 2026 16:28:14 +0000
+
 python3-xapp (3.0.5) adrien; urgency=medium
 
   * l10n: Update translations
